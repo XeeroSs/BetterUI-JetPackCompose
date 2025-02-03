@@ -1,4 +1,4 @@
-package fr.xeross.betterui.components
+package fr.xeross.betterui.components.texts
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.LocalTextStyle
