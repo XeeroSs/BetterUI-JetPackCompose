@@ -1,4 +1,4 @@
-package fr.xeross.betterui.ui.theme
+package fr.xeross.betterui.theme
 
 import android.app.Activity
 import android.os.Build

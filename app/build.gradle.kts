@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "fr.xeross.betterui"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "fr.xeross.betterui"

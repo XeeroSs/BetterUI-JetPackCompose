@@ -1,4 +1,4 @@
-package fr.xeross.betterui.ui.theme
+package fr.xeross.betterui.theme
 
 import androidx.compose.ui.graphics.Color
 
