@@ -1,17 +1,21 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidApplication)
+/*    alias(libs.plugins.androidApplication)*/
+/*    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.androidLibrary)*/
+    id("com.android.library")
     alias(libs.plugins.kotlinAndroid)
+
 }
 
 android {
     namespace = "fr.xeross.betterui"
     compileSdk = 35
-
+/*
     defaultConfig {
-        applicationId = "fr.xeross.betterui"
+        // applicationId = "fr.xeross.betterui"
         minSdk = 29
-        targetSdk = 34
+        testOptions.targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -19,7 +23,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-    }
+    }*/
 
     buildTypes {
         release {
