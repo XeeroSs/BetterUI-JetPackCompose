@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "BetterUI"
 include(":app")
- 
+include(":test")
