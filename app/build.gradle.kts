@@ -5,6 +5,20 @@ plugins {
     alias(libs.plugins.androidLibrary)
    // id("com.android.library")
     alias(libs.plugins.kotlinAndroid)
+    id("maven-publish")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                from (components["release"])
+                groupId = "com.github.xeeross"
+                artifactId = "betterui"
+                version = "1.0.0"
+            }
+        }
+    }
 }
 
 android {
