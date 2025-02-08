@@ -1,9 +1,11 @@
+import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
 /*    alias(libs.plugins.androidApplication)*/
-/*    alias(libs.plugins.kotlinAndroid)*/
+    /*    alias(libs.plugins.kotlinAndroid)*/
     alias(libs.plugins.androidLibrary)
-   // id("com.android.library")
+    // id("com.android.library")
     alias(libs.plugins.kotlinAndroid)
     id("maven-publish")
 }
@@ -11,10 +13,10 @@ plugins {
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("maven") {
-                from (components["release"])
-                groupId = "com.github.xeeross"
-                artifactId = "betterui"
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.XeeroSs"
+                artifactId = "BetterUI-JetPackCompose"
                 version = "1.0.0"
             }
         }
@@ -26,11 +28,11 @@ android {
     compileSdk = 35
 
     defaultConfig {
-    // applicationId = "fr.xeross.betterui"
-     minSdk = 29
-     testOptions.targetSdk = 35
-/*     versionCode = 1
-     versionName = "1.0"*/
+        // applicationId = "fr.xeross.betterui"
+        minSdk = 29
+        testOptions.targetSdk = 35
+        /*     versionCode = 1
+             versionName = "1.0"*/
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -48,11 +50,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17  // Utilise la version 17
+        targetCompatibility = JavaVersion.VERSION_17  // Utilise la version 17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"  // Assure-toi que Kotlin utilise aussi Java 17
     }
     buildFeatures {
         compose = true
