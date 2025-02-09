@@ -40,15 +40,15 @@ fun BetterCheckBox(
     icon: Int = R.drawable.ic_check,
     size: Dp = 20.dp,
     iconSize: Dp = 20.dp / 2,
-    border : Dp = 1.dp,
+    border: Dp = 1.dp,
     isCheck: Boolean = false,
-    corner:Dp = 5.dp,
+    corner: Dp = 5.dp,
     onChange: (Boolean) -> Unit,
 ) {
     var checked by stateOf(isCheck)
 
     val fill by animateColorAsState(
-       if(isFilled) color else Color.Transparent,
+        if (isFilled) color else Color.Transparent,
         label = "color"
     )
 
@@ -83,7 +83,7 @@ fun BetterCheckBox(
                     modifier = Modifier.size(iconSize),
                     painter = painterResource(icon),
                     contentDescription = "icon",
-                    tint =if(isFilled) Color.Unspecified else color
+                    tint = if (isFilled) Color.Unspecified else color
                 )
             }
         }
@@ -98,7 +98,7 @@ fun BetterCheckBoxPreview() {
     Row {
         Text(text = "Check Box Filled")
         Spacer(modifier = Modifier.width(5.dp))
-        BetterCheckBox(Color.Cyan,isFilled = true, size = 20.dp, iconSize = 10.dp, corner = 5.dp) {
+        BetterCheckBox(Color.Cyan, isFilled = true, size = 20.dp, iconSize = 10.dp, corner = 5.dp) {
 
         }
     }
