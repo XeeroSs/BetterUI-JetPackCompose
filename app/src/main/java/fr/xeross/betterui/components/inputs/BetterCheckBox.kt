@@ -32,10 +32,14 @@ import androidx.compose.ui.unit.dp
 import fr.xeross.betterui.R
 import fr.xeross.betterui.extensions.ComposeExtension.stateOf
 
+/**
+ * @version 1.1.0
+ */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun BetterCheckBox(
     color: Color,
+    colorIconWhenFilled: Color = Color.Unspecified,
     isFilled: Boolean = true,
     icon: Int = R.drawable.ic_check,
     size: Dp = 20.dp,
@@ -83,7 +87,7 @@ fun BetterCheckBox(
                     modifier = Modifier.size(iconSize),
                     painter = painterResource(icon),
                     contentDescription = "icon",
-                    tint = if (isFilled) Color.Unspecified else color
+                    tint = if (isFilled) colorIconWhenFilled else color
                 )
             }
         }
@@ -94,11 +98,12 @@ fun BetterCheckBox(
 
 @Preview
 @Composable
-fun BetterCheckBoxPreview() {
+private fun BetterCheckBoxPreview() {
     Row {
         Text(text = "Check Box Filled")
         Spacer(modifier = Modifier.width(5.dp))
-        BetterCheckBox(Color.Cyan, isFilled = true, size = 20.dp, iconSize = 10.dp, corner = 5.dp) {
+        BetterCheckBox(Color.Cyan,
+            Color.Red, isFilled = true, size = 20.dp, iconSize = 10.dp, corner = 5.dp) {
 
         }
     }

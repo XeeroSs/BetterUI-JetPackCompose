@@ -124,7 +124,7 @@ data class SnackbarDefaultData(
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun SnackbarViewPreview() {
+private fun SnackbarViewPreview() {
     MaterialTheme {
 
 

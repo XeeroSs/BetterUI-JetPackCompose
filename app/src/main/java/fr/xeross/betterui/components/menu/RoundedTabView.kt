@@ -114,6 +114,6 @@ fun <E : IRoundedTab> RoundedTabView(
 
 @Preview(showBackground = true)
 @Composable
-fun RoundedTabPreview() {
+private fun RoundedTabPreview() {
 
 }
