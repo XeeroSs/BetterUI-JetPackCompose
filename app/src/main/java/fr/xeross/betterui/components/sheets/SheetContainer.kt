@@ -30,17 +30,19 @@ import fr.xeross.betterui.R
 interface SheetListener {
     val resIconId: Int
     val iconOnRight: Boolean
+    val iconColor: Color
     val onClick: () -> Unit
 }
 
 /**
- * @version 1.0.1
+ * @version 1.1.0
  */
 @Composable
 fun SheetContainer(
     title: String,
-    container: Color = Color.Unspecified,
+    textColor: Color,
     actions: Array<SheetListener>,
+    container: Color = Color.Unspecified,
     paddingHorizontal: Dp = 0.dp,
     paddingVertical: Dp = 0.dp,
     iconSize: Dp = 16.dp,
@@ -57,11 +59,12 @@ fun SheetContainer(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            for (right in actions) {
-                if (!right.iconOnRight) {
-                    IconButton(modifier = Modifier.size(iconSize), onClick = { right.onClick }) {
+            for (a in actions) {
+                if (!a.iconOnRight) {
+                    IconButton(modifier = Modifier.size(iconSize), onClick = { a.onClick }) {
                         Icon(
-                            painter = painterResource(id = right.resIconId),
+                            painter = painterResource(id = a.resIconId),
+                            tint = a.iconColor,
                             contentDescription = ""
                         )
                     }
@@ -70,7 +73,7 @@ fun SheetContainer(
             }
             Text(
                 text = title, overflow = TextOverflow.Ellipsis, maxLines = 1,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = textColor,
                 fontSize = 18.sp,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -80,14 +83,15 @@ fun SheetContainer(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                for (left in actions) {
-                    if (left.iconOnRight) {
+                for (a in actions) {
+                    if (a.iconOnRight) {
                         Spacer(modifier = Modifier.width(spaceBetweenIcon))
                         IconButton(
                             modifier = Modifier.size(iconSize),
-                            onClick = { left.onClick() }) {
+                            onClick = { a.onClick() }) {
                             Icon(
-                                painter = painterResource(id = left.resIconId),
+                                painter = painterResource(id = a.resIconId),
+                                tint = a.iconColor,
                                 contentDescription = ""
                             )
                         }
@@ -107,19 +111,22 @@ fun SheetContainer(
 @Composable
 private fun SheetContainerPreview() {
     SheetContainer("Sheet content content content content",
-        MaterialTheme.colorScheme.background,
+        Color.Red,
         arrayOf(
             object : SheetListener {
                 override val resIconId = R.drawable.ic_check
                 override val iconOnRight = false
+                override val iconColor = Color.Blue
                 override val onClick = {}
             },
             object : SheetListener {
                 override val resIconId = R.drawable.ic_add
                 override val iconOnRight = true
+                override val iconColor = Color.Green
                 override val onClick = {}
             }
         ),
+        MaterialTheme.colorScheme.background,
         paddingHorizontal = 15.dp, paddingVertical = 15.dp) {
         Box(
             modifier = Modifier
