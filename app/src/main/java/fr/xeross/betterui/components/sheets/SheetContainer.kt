@@ -29,12 +29,12 @@ import fr.xeross.betterui.R
 
 interface SheetListener {
     val resIconId: Int
-    val left: Boolean
+    val iconOnRight: Boolean
     val onClick: () -> Unit
 }
 
 /**
- * @version 1.0.0
+ * @version 1.0.1
  */
 @Composable
 fun SheetContainer(
@@ -58,7 +58,7 @@ fun SheetContainer(
             modifier = Modifier.fillMaxWidth()
         ) {
             for (right in actions) {
-                if (!right.left) {
+                if (!right.iconOnRight) {
                     IconButton(modifier = Modifier.size(iconSize), onClick = { right.onClick }) {
                         Icon(
                             painter = painterResource(id = right.resIconId),
@@ -81,7 +81,7 @@ fun SheetContainer(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 for (left in actions) {
-                    if (left.left) {
+                    if (left.iconOnRight) {
                         Spacer(modifier = Modifier.width(spaceBetweenIcon))
                         IconButton(
                             modifier = Modifier.size(iconSize),
@@ -111,12 +111,12 @@ private fun SheetContainerPreview() {
         arrayOf(
             object : SheetListener {
                 override val resIconId = R.drawable.ic_check
-                override val left = false
+                override val iconOnRight = false
                 override val onClick = {}
             },
             object : SheetListener {
                 override val resIconId = R.drawable.ic_add
-                override val left = true
+                override val iconOnRight = true
                 override val onClick = {}
             }
         ),
