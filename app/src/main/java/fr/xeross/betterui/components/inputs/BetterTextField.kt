@@ -18,6 +18,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
@@ -226,6 +227,7 @@ data class BetterTextFieldDefault(
 interface BetterIconTextField {
     fun resIconId(): Int
     fun onClick(): (() -> Unit)? = null
+    @Composable
     fun color(): Color = Color.Gray
     fun size(): Dp = 30.dp
     fun isTraining(): Boolean = true
@@ -258,13 +260,15 @@ private fun BetterTextFieldPreview() {
                 object : BetterIconTextField {
                     override fun resIconId(): Int = R.drawable.ic_add
                     override fun onClick() = null
-                    override fun color(): Color = Color.Red
+                    @Composable
+                    override fun color() = Color.Red
                     override fun size(): Dp = 30.dp
                     override fun isTraining(): Boolean = false
                 },
                 object : BetterIconTextField {
                     override fun resIconId(): Int = R.drawable.ic_check
                     override fun onClick() = null
+                    @Composable
                     override fun color(): Color = Color.Green
                     override fun size(): Dp = 30.dp
                     override fun isTraining(): Boolean = true
@@ -272,6 +276,7 @@ private fun BetterTextFieldPreview() {
                 object : BetterIconTextField {
                     override fun resIconId(): Int = R.drawable.ic_add
                     override fun onClick(): (() -> Unit)? = { text.value = "" }
+                    @Composable
                     override fun color(): Color = Color.Blue
                     override fun size(): Dp = 30.dp
                     override fun isTraining(): Boolean = true
@@ -303,13 +308,15 @@ private fun BetterTextFieldPreview() {
                 object : BetterIconTextField {
                     override fun resIconId(): Int = R.drawable.ic_add
                     override fun onClick() = null
-                    override fun color(): Color = Color.Gray
+                    @Composable
+                    override fun color(): Color = MaterialTheme.colorScheme.primary
                     override fun size(): Dp = 20.dp
                     override fun isTraining(): Boolean = false
                 },
                 object : BetterIconTextField {
                     override fun resIconId(): Int = R.drawable.ic_check
                     override fun onClick() = null
+                    @Composable
                     override fun color(): Color = Color.Gray
                     override fun size(): Dp = 20.dp
                     override fun isTraining(): Boolean = true
@@ -317,6 +324,7 @@ private fun BetterTextFieldPreview() {
                 object : BetterIconTextField {
                     override fun resIconId(): Int = R.drawable.ic_add
                     override fun onClick(): (() -> Unit)? = { text.value = "" }
+                    @Composable
                     override fun color(): Color = Color.Gray
                     override fun size(): Dp = 20.dp
                     override fun isTraining(): Boolean = true
