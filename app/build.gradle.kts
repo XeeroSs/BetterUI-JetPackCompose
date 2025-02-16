@@ -17,7 +17,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.XeeroSs"
                 artifactId = "BetterUI-JetPackCompose"
-                version = "1.2.1"
+                version = "1.3.0"
             }
         }
     }
