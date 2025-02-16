@@ -49,7 +49,7 @@ fun SnackbarView(
     contentColor: Color,
     trainingIcon: Int? = null,
     spaceBottomNavigationHeight: Dp? = null,
-    defaultData: SnackbarDefaultData = SnackbarDefaultData()
+    defaultData: BetterSnackbarDefault = BetterSnackbarDefault()
 ) {
     val modifier = if (spaceBottomNavigationHeight != null) {
         Modifier.padding(start = 15.dp, end = 15.dp, bottom = spaceBottomNavigationHeight)
@@ -104,7 +104,7 @@ fun SnackbarView(
     }
 }
 
-data class SnackbarDefaultData(
+data class BetterSnackbarDefault(
     val cornerShape: RoundedCornerShape = RoundedCornerShape(100),
     val iconSize: Dp = 18.dp,
     val spaceBetweenIconAndText: Dp = 8.dp,
