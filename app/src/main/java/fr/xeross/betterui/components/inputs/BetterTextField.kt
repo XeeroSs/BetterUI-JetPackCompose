@@ -1,5 +1,6 @@
 package fr.xeross.betterui.components.inputs
 
+import android.R.attr.singleLine
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -70,7 +71,7 @@ fun BetterTextField(
     icons: Array<BetterIconTextField> = emptyArray(),
 
     colorBorder: Color,
-    colorDefault: TextFieldColors = TextFieldDefaults.textFieldColors(
+    colorDefault: TextFieldColors = TextFieldDefaults.colors(
         unfocusedIndicatorColor = Color.Transparent,
     ),
 
@@ -138,7 +139,7 @@ fun BetterTextField(
         onTextLayout = default.onTextLayout,
         readOnly = default.readOnly,
     ) { innerTextField ->
-        TextFieldDefaults.OutlinedTextFieldDecorationBox(
+        TextFieldDefaults.DecorationBox(
             colors = colorDefault,
             trailingIcon = trainingIcons?.let {
                 {
@@ -166,7 +167,7 @@ fun BetterTextField(
                 }
             },
             leadingIcon = leadingIcons?.let {
-                {
+                @Composable {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         leadingIcons.forEach {
                             if (it.onClick() == null) {
@@ -192,12 +193,14 @@ fun BetterTextField(
             },
             value = "",
             label = {
-                Text(
-                    text = if (text.value.isEmpty() && !isFocused) label else "",
-                    fontWeight = labelStyle.fontWeight,
-                    fontSize = labelStyle.fontSize,
-                    color = labelStyle.color,
-                )
+                @Composable {
+                    Text(
+                        text = if (text.value.isEmpty() && !isFocused) label else "",
+                        fontWeight = labelStyle.fontWeight,
+                        fontSize = labelStyle.fontSize,
+                        color = labelStyle.color,
+                    )
+                }
             },
             contentPadding =contentPadding,
             visualTransformation = default.visualTransformation,
@@ -243,10 +246,8 @@ private fun BetterTextFieldPreview() {
         BetterTextField(
             value = text.value,
             label = "Hint",
-            colorDefault = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Blue.transparent(10f),
+            colorDefault = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = Color.Transparent,
-                textColor = Color.Green,
                 unfocusedLabelColor = Color.Yellow,
             ),
             textStyle = TextStyle(
@@ -291,11 +292,14 @@ private fun BetterTextFieldPreview() {
             modifier = Modifier.height(50.dp),
             value = text.value,
             label = "Search",
-            colorDefault = TextFieldDefaults.textFieldColors(
-                containerColor = Color.White,
-                unfocusedIndicatorColor = Color.Transparent,
-                textColor = Color.Gray,
-                unfocusedLabelColor = Color.Gray,
+            colorDefault = TextFieldDefaults.colors(
+                unfocusedContainerColor = Color(0xFFE6EDF5).transparent(90f),
+                focusedContainerColor = Color(0xFFE6EDF5).transparent(90f),
+                focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
+                disabledLabelColor = MaterialTheme.colorScheme.primary.transparent(30f),
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
             ),
             textStyle = TextStyle(
                 color = Color.Red,
